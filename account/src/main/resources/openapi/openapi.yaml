@@ -1,0 +1,35 @@
+openapi: 3.0.3
+info:
+  title: Accounts microservice
+  version: 0.1
+
+paths:
+  /account:
+    get:
+      tags:
+        - account
+      summary: Get account information by user id
+      description: Get account information by user id
+      operationId: getAccountById
+
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+#        404:
+#          description: Account not found
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/AccountNotFoundError'
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        balance:
+          type: number
+          format: double

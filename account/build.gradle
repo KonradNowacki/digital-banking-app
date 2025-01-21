@@ -2,6 +2,8 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.1'
 	id 'io.spring.dependency-management' version '1.1.7'
+
+	id 'org.openapi.generator' version '6.2.1' // Make sure to use the correct version
 }
 
 group = 'com.konbank'
@@ -23,10 +25,40 @@ repositories {
 	mavenCentral()
 }
 
+openApiGenerate {
+	generatorName = "spring"
+	inputSpec = "$rootDir/src/main/resources/openapi/openapi.yaml"
+	outputDir = "$buildDir/generated"
+	skipValidateSpec = true
+	configOptions = [
+		openApiNullable: "false",
+		interfaceOnly:   "true"
+	]
+}
+
+tasks.compileJava.dependsOn tasks.openApiGenerate
+
+sourceSets {
+	main {
+		java {
+			srcDirs "$buildDir/generated/src/main/java"
+		}
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.8.3'
+
+	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+	implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.2-b01'
+	implementation group: 'org.openapitools', name: 'jackson-databind-nullable', version: '0.2.6'
+	compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
