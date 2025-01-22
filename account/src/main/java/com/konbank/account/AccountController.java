@@ -11,8 +11,9 @@ public class AccountController implements AccountApi {
     @Override
     public ResponseEntity<Account> getAccountById() {
 
-       Account account = new Account();
-       account.setBalance(5000.0);
+       Account account = Account.builder()
+               .balance(5000.0)
+               .build();
 
        return ResponseEntity.ok(account);
     }

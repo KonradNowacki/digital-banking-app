@@ -1,10 +1,10 @@
 openapi: 3.0.3
 info:
-  title: Accounts microservice
+  title: Accounts service
   version: 0.1
 
 paths:
-  /account:
+  /api/v1/account:
     get:
       tags:
         - account

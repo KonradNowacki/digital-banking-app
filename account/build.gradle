@@ -32,7 +32,10 @@ openApiGenerate {
 	skipValidateSpec = true
 	configOptions = [
 		openApiNullable: "false",
-		interfaceOnly:   "true"
+		interfaceOnly:   "true",
+		useTags: "true",
+		additionalModelTypeAnnotations: "@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor",
+
 	]
 }
 
