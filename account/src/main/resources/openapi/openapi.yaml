@@ -4,7 +4,28 @@ info:
   version: 0.1
 
 paths:
-  /api/v1/account:
+  /api/v1/account/{accountId}:
+    post:
+      tags:
+        - account
+      summary: Perform financial operation on given account
+      description: Perform financial operation on given account
+      operationId: performAction
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountOperationDTO"
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+
     get:
       tags:
         - account
@@ -27,6 +48,23 @@ paths:
 #                $ref: '#/components/schemas/AccountNotFoundError'
 components:
   schemas:
+
+    AccountOperationDTO:
+      type: object
+      properties:
+        operationType:
+          $ref: '#/components/schemas/AccountOperationType'
+        amount:
+          type: number
+          format: double
+
+    AccountOperationType:
+      type: string
+      nullable: false
+      enum:
+        - ADDITION
+        - SUBTRACTION
+
     AccountDTO:
       type: object
       properties:

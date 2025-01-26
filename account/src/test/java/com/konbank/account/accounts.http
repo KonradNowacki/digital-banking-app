@@ -1,0 +1,7 @@
+POST http://localhost:8081/api/v1/account/123
+Content-Type: application/json
+
+{
+  "operationType": "SUBTRACTION",
+  "amount": 500
+}

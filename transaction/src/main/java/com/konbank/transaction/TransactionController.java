@@ -32,15 +32,17 @@ public class TransactionController implements TransactionApi {
 
         System.out.println("Transfer method");
 
-//        WebClient webClient = WebClient.create("http://localhost:8080");
+        WebClient webClient = WebClient.create("http://localhost:8081");
 //
-//        String response = webClient.post()
-//                .uri("/posts") // Endpoint URI
+        String response = webClient.get()
+                .uri("/api/v1/account") // Endpoint URI
 //                .header("Content-Type", "application/json") // Set headers
 //                .bodyValue(jsonPayload) // Set the request body
-//                .retrieve() // Retrieve the response
-//                .bodyToMono(String.class) // Map the body to a String (Mono<String>)
-//                .block();
+                .retrieve() // Retrieve the response
+                .bodyToMono(String.class) // Map the body to a String (Mono<String>)
+                .block();
+
+        System.out.println(response);
 
         return ResponseEntity.ok().build();
 

@@ -19,14 +19,13 @@ paths:
             schema:
               $ref: "#/components/schemas/TransferDTO"
 
-
-#      responses:
-#        200:
-#          description: Success
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/TransferDTO'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferDTO'
 #        404:
 #          description: Account not found
 #          content:
