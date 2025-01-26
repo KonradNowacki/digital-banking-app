@@ -18,7 +18,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Account'
+                $ref: '#/components/schemas/AccountDTO'
 #        404:
 #          description: Account not found
 #          content:
@@ -27,7 +27,7 @@ paths:
 #                $ref: '#/components/schemas/AccountNotFoundError'
 components:
   schemas:
-    Account:
+    AccountDTO:
       type: object
       properties:
         balance:

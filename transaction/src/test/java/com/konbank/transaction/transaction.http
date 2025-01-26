@@ -1,0 +1,9 @@
+### Create a Transaction
+POST http://localhost:8081/api/v1/transaction
+Content-Type: application/json
+
+{
+  "fromAccountId": "123",
+  "toAccountId": "456",
+  "amount": 100.50
+}

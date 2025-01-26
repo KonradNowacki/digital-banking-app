@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: Transactions service
+  version: 0.1
+
+paths:
+  /api/v1/transaction:
+    post:
+      tags:
+        - transaction
+      summary: Post a money transfer
+      description: Operation transferring money from one account to another
+      operationId: transfer
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransferDTO"
+
+
+#      responses:
+#        200:
+#          description: Success
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/TransferDTO'
+#        404:
+#          description: Account not found
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/AccountNotFoundError'
+components:
+  schemas:
+    TransferDTO:
+      type: object
+      properties:
+        fromAccount:
+          type: string
+        toAccount:
+          type: string
+        amount:
+          type: number
+          format: double
